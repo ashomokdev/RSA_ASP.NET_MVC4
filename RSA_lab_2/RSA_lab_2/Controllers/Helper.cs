@@ -5,9 +5,9 @@ using System.Web;
 
 namespace RSA_lab_2.Controllers
 {
-    public class Helper
-    {
-        public static List<int> Primes = new List<int> {
+	public class Helper
+	{
+		public static List<int> Primes = new List<int> {
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 
 , 31, 37, 41, 43, 47, 53, 59, 61, 67, 71 
 , 73, 79, 83, 89, 97, 101, 103, 107, 109, 113 
@@ -188,32 +188,19 @@ namespace RSA_lab_2.Controllers
 , 15161, 15173, 15187, 15193, 15199, 15217, 15227, 15233, 15241, 15259 
 , 15263, 15269, 15271, 15277, 15287, 15289, 15299, 15307, 15313, 15319
 };
-        //public static List<int> Primes = GeneratePrimesNaive(Int32.MaxValue);
 
-        public static List<int> GeneratePrimesNaive(int n)
-        {
-            List<int> primes = new List<int>();
-            primes.Add(2);
-            int nextPrime = 3;
-            while (primes.Count < n)
-            {
-                int sqrt = (int)Math.Sqrt(nextPrime);
-                bool isPrime = true;
-                for (int i = 0; (int)primes[i] <= sqrt; i++)
-                {
-                    if (nextPrime % primes[i] == 0)
-                    {
-                        isPrime = false;
-                        break;
-                    }
-                }
-                if (isPrime)
-                {
-                    primes.Add(nextPrime);
-                }
-                nextPrime += 2;
-            }
-            return primes;
-        }
-    }
+		public static double Totient(int n)
+		{
+			double totient = n;
+			var primeFactorsOfN = new List<int>();
+			foreach (int i in Primes)
+			{
+				if (n % i == 0 && n != i) primeFactorsOfN.Add(i);
+				if (i > Math.Sqrt(n)) break;
+			}
+			foreach (int i in primeFactorsOfN)
+				totient *= 1 - 1 / (double)i;
+			return totient;
+		}
+	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -27,11 +28,23 @@ namespace RSA_lab_2.Controllers
                 ViewBag.Fi = fi;
                 int e = Helper.Primes.OrderBy(x => Guid.NewGuid()).Where(y => y < fi).FirstOrDefault();
                 ViewBag.E = e;
+				double pow = Helper.Totient(11);
+				double pow2 = Helper.Totient(1);
+				double pow3 = Helper.Totient(5);
+				double pow7 = Helper.Totient(8);
 
-                double d = (Math.Pow(e, -1)) % fi;
-                ViewBag.D = (1/3) % 9167368;
-                return PartialView();
+				//double pow = Helper.Totient(11) - 1;
+				int d = (int)Math.Pow(3, 9) % 11;
+				//int pow = (int)Helper.Totient(9167368) - 1;
+				//int d = (int)Math.Pow(3, pow);
+				//BigInteger res = BigInteger.ModPow(3, 9167368 - 2, 9167368);
 
+
+				////double d = (Math.Pow(e, -1)) % fi;
+				//BigInteger dd = BigInteger.ModPow(1 / 3, 1, 9167368);
+				//ViewBag.D = d;
+				return PartialView();
+				//http://stackoverflow.com/questions/14181494/1-biginteger-in-c-sharp
                 //https://ru.wikipedia.org/wiki/RSA#.D0.92.D1.8B.D0.B1.D0.BE.D1.80_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D1.81.D0.B5.D0.BA.D1.80.D0.B5.D1.82.D0.BD.D0.BE.D0.B3.D0.BE_.D0.BF.D0.BE.D0.BA.D0.B0.D0.B7.D0.B0.D1.82.D0.B5.D0.BB.D1.8F
                 //http://www.itorian.com/2013/02/jquery-ajax-get-and-post-calls-to.html
             }
