@@ -10,10 +10,8 @@ namespace RSA_lab_2.Controllers
 {
     public class HomeController : Controller
     {
-
-
-
-        public ActionResult Encrypt(string message)
+        private BigInteger _message;
+        public ActionResult Encrypt()
         {
             try
             {
@@ -34,18 +32,18 @@ namespace RSA_lab_2.Controllers
                 ViewBag.E = e;
                 BigInteger d = BigInteger.Pow(e, Helper.Totient(fi) - 1) % fi;
                 ViewBag.D = d;
-                BigInteger c = BigInteger.Pow(BigInteger.Parse(message), e) % n;
+                BigInteger c = BigInteger.Pow(_message, e) % n;
                 ViewBag.C = c;
-				//int pow = (int)Helper.Totient(9167368) - 1;
-				//int d = (int)Math.Pow(3, pow);
-				//BigInteger res = BigInteger.ModPow(3, 9167368 - 2, 9167368);
+                //int pow = (int)Helper.Totient(9167368) - 1;
+                //int d = (int)Math.Pow(3, pow);
+                //BigInteger res = BigInteger.ModPow(3, 9167368 - 2, 9167368);
 
 
-				////double d = (Math.Pow(e, -1)) % fi;
-				//BigInteger dd = BigInteger.ModPow(1 / 3, 1, 9167368);
-				//ViewBag.D = d;
-				return PartialView();
-				//http://stackoverflow.com/questions/14181494/1-biginteger-in-c-sharp
+                ////double d = (Math.Pow(e, -1)) % fi;
+                //BigInteger dd = BigInteger.ModPow(1 / 3, 1, 9167368);
+                //ViewBag.D = d;
+                return PartialView();
+                //http://stackoverflow.com/questions/14181494/1-biginteger-in-c-sharp
                 //https://ru.wikipedia.org/wiki/RSA#.D0.92.D1.8B.D0.B1.D0.BE.D1.80_.D0.B7.D0.BD.D0.B0.D1.87.D0.B5.D0.BD.D0.B8.D1.8F_.D1.81.D0.B5.D0.BA.D1.80.D0.B5.D1.82.D0.BD.D0.BE.D0.B3.D0.BE_.D0.BF.D0.BE.D0.BA.D0.B0.D0.B7.D0.B0.D1.82.D0.B5.D0.BB.D1.8F
                 //http://www.itorian.com/2013/02/jquery-ajax-get-and-post-calls-to.html
             }
@@ -53,6 +51,16 @@ namespace RSA_lab_2.Controllers
             {
                 return PartialView();
                 //return ex.Message + ex.StackTrace;
+            }
+        }
+
+        [HttpPost]
+        public void PostMessage(string message)
+        {
+            if (!String.IsNullOrEmpty(message) && !String.IsNullOrEmpty(message))
+            {
+                //TODO TryParse implement 
+                _message = BigInteger.Parse(message);
             }
         }
 

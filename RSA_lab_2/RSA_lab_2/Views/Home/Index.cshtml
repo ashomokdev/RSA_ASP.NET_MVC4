@@ -16,15 +16,28 @@
         </div>
     </section>
 }
-<h3>Введіть числове повідомлення для шифрування:</h3>
-@Html.TextBox("Message")
-<input id="ButtonID" type="submit" value="Шифрувати" />
+
+<p>
+    <h3>
+        Введіть числове повідомлення для шифрування:
+    </h3> @Html.TextBox("Message")
+    <input type="button" id="ButtonID" value="Шифрувати" />
+</p>
+
+<script type="text/javascript">
+    $('#ButtonID').click(function () {
+        var urlPost = "/Home/PostMessage";
+        var message = $("#Message").val();
+        $.post(urlPost, { Message: message }, function (data) {
+        });
+    })
+</script>
 
 <script type="text/jscript">
     $('#ButtonID').click(function () {
         var url = "/Home/Encrypt";
-        var input_message = $('#Message').val();
-        $.get(url, { input: input_message }, function (data) {
+        var name = $('#Name').val();
+        $.get(url, { input: name }, function (data) {
             $("#rData").html(data);
         });
     })
