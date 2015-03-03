@@ -1,4 +1,6 @@
-﻿@{
+﻿<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+@{
     ViewBag.Title = "Home Page";
 }
 @section featured {
@@ -15,14 +17,14 @@
     </section>
 }
 <h3>Введіть числове повідомлення для шифрування:</h3>
-<input id="Text1" type="text" />
+@Html.TextBox("Message")
 <input id="ButtonID" type="submit" value="Шифрувати" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/jscript">
     $('#ButtonID').click(function () {
         var url = "/Home/Encrypt";
-        $.get(url, null, function (data) {
+        var input_message = $('#Message').val();
+        $.get(url, { input: input_message }, function (data) {
             $("#rData").html(data);
         });
     })

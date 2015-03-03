@@ -7,7 +7,7 @@ namespace RSA_lab_2.Controllers
 {
 	public class Helper
 	{
-		public static List<int> Primes = new List<int> {
+		public static List<int> BigListPrimes = new List<int> {
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 
 , 31, 37, 41, 43, 47, 53, 59, 61, 67, 71 
 , 73, 79, 83, 89, 97, 101, 103, 107, 109, 113 
@@ -188,19 +188,42 @@ namespace RSA_lab_2.Controllers
 , 15161, 15173, 15187, 15193, 15199, 15217, 15227, 15233, 15241, 15259 
 , 15263, 15269, 15271, 15277, 15287, 15289, 15299, 15307, 15313, 15319
 };
+        public static List<int> Primes = BigListPrimes.GetRange(0, 100); //only 100 first numbers
 
-		public static double Totient(int n)
-		{
-			double totient = n;
-			var primeFactorsOfN = new List<int>();
-			foreach (int i in Primes)
-			{
-				if (n % i == 0 && n != i) primeFactorsOfN.Add(i);
-				if (i > Math.Sqrt(n)) break;
-			}
-			foreach (int i in primeFactorsOfN)
-				totient *= 1 - 1 / (double)i;
-			return totient;
-		}
+        public static int Totient(int n)
+        {
+            List <int> primes = Primes.Where(y => y < n+1).ToList(); 
+            int numPrimes = primes.Count;
+
+            int totient = n;
+            int currentNum = n, temp, p, prevP = 0;
+            for (int i = 0; i < numPrimes; i++)
+            {
+                p = (int)primes[i];
+                if (p > currentNum) break;
+                temp = currentNum / p;
+                if (temp * p == currentNum)
+                {
+                    currentNum = temp;
+                    i--;
+                    if (prevP != p) { prevP = p; totient -= (totient / p); }
+                }
+            }
+            return totient;
+        }
+
+        //public static double Totient(int n)
+        //{
+        //    double totient = n;
+        //    var primeFactorsOfN = new List<int>();
+        //    foreach (int i in Primes)
+        //    {
+        //        if (n % i == 0 && n != i) primeFactorsOfN.Add(i);
+        //        if (i > Math.Sqrt(n)) break;
+        //    }
+        //    foreach (int i in primeFactorsOfN)
+        //        totient *= 1 - 1 / (double)i;
+        //    return totient;
+        //}
 	}
 }

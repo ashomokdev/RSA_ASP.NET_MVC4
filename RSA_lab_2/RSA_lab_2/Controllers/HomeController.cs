@@ -10,7 +10,10 @@ namespace RSA_lab_2.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Encrypt()
+
+
+
+        public ActionResult Encrypt(string message)
         {
             try
             {
@@ -23,18 +26,16 @@ namespace RSA_lab_2.Controllers
                 Random rnd2 = new Random();
                 int q = Helper.Primes[rnd2.Next(Helper.Primes.Count)];
                 ViewBag.Q = q;
-                ViewBag.N = p * q;
+                int n = p * q;
+                ViewBag.N = n;
                 int fi = (p - 1) * (q - 1);
                 ViewBag.Fi = fi;
                 int e = Helper.Primes.OrderBy(x => Guid.NewGuid()).Where(y => y < fi).FirstOrDefault();
                 ViewBag.E = e;
-				double pow = Helper.Totient(11);
-				double pow2 = Helper.Totient(1);
-				double pow3 = Helper.Totient(5);
-				double pow7 = Helper.Totient(8);
-
-				//double pow = Helper.Totient(11) - 1;
-				int d = (int)Math.Pow(3, 9) % 11;
+                BigInteger d = BigInteger.Pow(e, Helper.Totient(fi) - 1) % fi;
+                ViewBag.D = d;
+                BigInteger c = BigInteger.Pow(BigInteger.Parse(message), e) % n;
+                ViewBag.C = c;
 				//int pow = (int)Helper.Totient(9167368) - 1;
 				//int d = (int)Math.Pow(3, pow);
 				//BigInteger res = BigInteger.ModPow(3, 9167368 - 2, 9167368);
