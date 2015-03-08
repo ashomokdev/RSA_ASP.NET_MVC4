@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA_lab_2", "RSA_lab_2\RSA_lab_2.csproj", "{7C42DA6E-3370-4057-BB77-A080ADE5DE18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{EB4F3095-6B09-490D-A956-E414049B37EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C42DA6E-3370-4057-BB77-A080ADE5DE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C42DA6E-3370-4057-BB77-A080ADE5DE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C42DA6E-3370-4057-BB77-A080ADE5DE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C42DA6E-3370-4057-BB77-A080ADE5DE18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4F3095-6B09-490D-A956-E414049B37EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4F3095-6B09-490D-A956-E414049B37EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4F3095-6B09-490D-A956-E414049B37EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4F3095-6B09-490D-A956-E414049B37EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

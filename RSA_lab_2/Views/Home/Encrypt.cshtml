@@ -1,0 +1,57 @@
+﻿<ol class="round">
+    <li class="one">
+        <h5>Вибрати два простих різних числа</h5>
+        p = @ViewBag.P
+        q = @ViewBag.Q
+    </li>
+
+    <li class="two">
+        <h5>Обчислити модуль (добуток)</h5>
+        n = p * q = @ViewBag.N     
+    </li>
+
+    <li class="three">
+        <h5>Обчислити функцію Ейлера</h5>
+        &#966(n) = (p - 1) * (q - 1) = @ViewBag.Fi 
+    </li>
+
+        <li class="four">
+        <h5>Вибрати відкриту експоненту</h5>
+        e = @ViewBag.E 
+    </li>
+
+        <li class="five">
+        <h5>Обчислити секретну експоненту</h5>
+        d = @ViewBag.D 
+    </li>   
+        <li class="six">
+        <h5> Опублікувати відкритий ключ</h5>
+        {e, n} = {@ViewBag.E, @ViewBag.N}
+    </li>
+            <li class="six">
+        <h5> Зберегти закритий ключ</h5>
+        {d, n} = {@ViewBag.D, @ViewBag.N}
+    </li>
+</ol>
+ <h4>Шифрування</h4>
+<ol class="round">
+    <li class="one">
+        <h5>Обчислити шифротекст</h5>
+        C = message<sup>e</sup> mod n = @ViewBag.C
+    </li>  
+</ol>
+
+<h4>Дешифрування</h4>
+<input id="Decryption" type="text" value =" @ViewBag.C"/>
+<input id="ButtonDecrypt" type="button" value="Дешифрувати" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/jscript">
+    $('#ButtonDecrypt').click(function () {
+        $('h3').text("1111");
+    })
+</script>
+
+<h3 id ="h3">@ViewBag.message</h3>
+
