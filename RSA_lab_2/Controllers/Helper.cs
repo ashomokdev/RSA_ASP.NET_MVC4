@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Web;
 
 namespace RSA_lab_2.Controllers
@@ -188,42 +189,23 @@ namespace RSA_lab_2.Controllers
 , 15161, 15173, 15187, 15193, 15199, 15217, 15227, 15233, 15241, 15259 
 , 15263, 15269, 15271, 15277, 15287, 15289, 15299, 15307, 15313, 15319
 };
-        
 
-        public static int Totient(int n)
+        public static int MultiplicativeInverse(int e, int fi)
         {
-            List <int> primes = Primes.Where(y => y < n+1).ToList(); 
-            int numPrimes = primes.Count;
-
-            int totient = n;
-            int currentNum = n, temp, p, prevP = 0;
-            for (int i = 0; i < numPrimes; i++)
+            double result;
+            int k = 1;
+            while (true)
             {
-                p = (int)primes[i];
-                if (p > currentNum) break;
-                temp = currentNum / p;
-                if (temp * p == currentNum)
+                result = (1 + (k * fi)) / (double) e;
+                if ((Math.Round(result, 5) % 1) == 0) //integer
                 {
-                    currentNum = temp;
-                    i--;
-                    if (prevP != p) { prevP = p; totient -= (totient / p); }
+                    return (int)result;
+                }
+                else
+                {
+                    k++;
                 }
             }
-            return totient;
         }
-
-        //public static double Totient(int n)
-        //{
-        //    double totient = n;
-        //    var primeFactorsOfN = new List<int>();
-        //    foreach (int i in Primes)
-        //    {
-        //        if (n % i == 0 && n != i) primeFactorsOfN.Add(i);
-        //        if (i > Math.Sqrt(n)) break;
-        //    }
-        //    foreach (int i in primeFactorsOfN)
-        //        totient *= 1 - 1 / (double)i;
-        //    return totient;
-        //}
 	}
 }

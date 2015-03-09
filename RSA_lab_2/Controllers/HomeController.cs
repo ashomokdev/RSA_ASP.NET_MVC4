@@ -28,17 +28,19 @@ namespace RSA_lab_2.Controllers
             ViewBag.Fi = fi;
             int e = shortprimes.OrderBy(x => Guid.NewGuid()).Where(y => y < fi).FirstOrDefault();
             ViewBag.E = e;
-            BigInteger d = BigInteger.Pow(e, Helper.Totient(fi) - 1) % fi;
+
+            int d = Helper.MultiplicativeInverse(e, fi);
             ViewBag.D = d;
+            
             BigInteger c = BigInteger.Pow(BigInteger.Parse(message), e) % n;
             ViewBag.C = c;
 
-            BigInteger decryptedMessage = BigInteger.Pow(c, (int)d) % n;
+            BigInteger decryptedMessage = BigInteger.Pow(c, d) % n;
             ViewBag.message = decryptedMessage;
             return PartialView();
-            //http://stackoverflow.com/questions/14181494/1-biginteger-in-c-sharp
-
         }
+
+
 
         public ActionResult Index()
         {
